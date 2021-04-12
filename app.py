@@ -32,7 +32,7 @@ def results():
 # create a route for webhook
 @app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
-	quotations = json.load(open("quotations.json",encoding="utf-8_sig"))
+	# quotations = json.load(open("quotations.json",encoding="utf-8_sig"))
 	headers = {"X-AIO-Key": "aio_tZwT41kNnCUq2MfgUmQfrbgsz0TW"}
 	url1 = "https://io.adafruit.com/api/v2/nisam/feeds/relay1/data"
 	url2 = "https://io.adafruit.com/api/v2/nisam/feeds/relay2/data"
