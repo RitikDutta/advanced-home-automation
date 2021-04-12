@@ -82,7 +82,7 @@ def webhook():
 	# 	speech = "value of {0} is {1}".format(b, r_crypto[b]['last'])
 
 	reply = {"candidates": [{"first_simple": {"variants": [{"speech": "Enter "}]}}]}
-	print(b)
+	# print(b)
 	return {
   "session": {
     "id": "example_session_id",
