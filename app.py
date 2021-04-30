@@ -48,7 +48,7 @@ def webhook():
 	
 	req = request.get_json()
 	a = req['handler']['name']
-	b = req['intent']['params']['currency']['resolved']
+	
 	speech = ""
 	if a=='relay1on':
 		if relay1_value == "ON":
@@ -79,6 +79,7 @@ def webhook():
 			data = r.json()
 			speech = "Relay 2 Turned off"
 	elif a=='crypto':
+		b = req['intent']['params']['currency1']['resolved']
 		speech = "value of {0} is {1}".format(b, r_crypto[b]['last'])
 
 	reply = {"candidates": [{"first_simple": {"variants": [{"speech": "Enter "}]}}]}
