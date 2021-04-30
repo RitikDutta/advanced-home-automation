@@ -48,7 +48,7 @@ def webhook():
 	
 	req = request.get_json()
 	a = req['handler']['name']
-	b = req['intent']['params']['currency1']['resolved']
+	b = req['intent']['params']['currency']['resolved']
 	speech = ""
 	if a=='relay1on':
 		if relay1_value == "ON":
