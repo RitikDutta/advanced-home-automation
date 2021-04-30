@@ -36,12 +36,23 @@ def webhook():
 	headers = {"X-AIO-Key": "aio_tZwT41kNnCUq2MfgUmQfrbgsz0TW"}
 	url1 = "https://io.adafruit.com/api/v2/nisam/feeds/relay1/data"
 	url2 = "https://io.adafruit.com/api/v2/nisam/feeds/relay2/data"
+	url3 = "https://io.adafruit.com/api/v2/nisam/feeds/relay3/data"
+	url4 = "https://io.adafruit.com/api/v2/nisam/feeds/relay4/data"
 	resget1 = requests.get('https://io.adafruit.com/api/v2/nisam/feeds/relay1?x-aio-key=aio_tZwT41kNnCUq2MfgUmQfrbgsz0TW')
 	r1 = resget1.json()
 	relay1_value = r1['last_value']
 	resget2 = requests.get('https://io.adafruit.com/api/v2/nisam/feeds/relay2?x-aio-key=aio_tZwT41kNnCUq2MfgUmQfrbgsz0TW')
 	r2 = resget2.json()
 	relay2_value = r2['last_value']
+
+	resget3 = requests.get('https://io.adafruit.com/api/v2/nisam/feeds/relay3?x-aio-key=aio_tZwT41kNnCUq2MfgUmQfrbgsz0TW')
+	r3 = resget3.json()
+	relay3_value = r3['last_value']
+	resget4 = requests.get('https://io.adafruit.com/api/v2/nisam/feeds/relay4?x-aio-key=aio_tZwT41kNnCUq2MfgUmQfrbgsz0TW')
+	r4 = resget4.json()
+	relay4_value = r4['last_value']
+
+
 	crypto = requests.get('https://api.wazirx.com/api/v2/tickers')
 	r_crypto = crypto.json()
 
@@ -78,6 +89,39 @@ def webhook():
 			r = requests.post(url2, data={"value":"OFF"}, headers=headers)
 			data = r.json()
 			speech = "Relay 2 Turned off"
+
+
+
+	if a=='relay3on':
+		if relay3_value == "ON":
+			speech = "Relay 3 already on"
+		else:
+			r = requests.post(url3, data={"value":"ON"}, headers=headers)
+			data = r.json()
+			speech = "Relay 3 Turned on"
+	elif a == 'relay3off':
+		if relay3_value == "OFF":
+			speech = "Relay 3 already off"
+		else:
+			r = requests.post(url3, data={"value":"OFF"}, headers=headers)
+			data = r.json()
+			speech = "Relay 3 Turned off"
+	elif a == 'relay4on':
+		if relay4_value == "ON":
+			speech = "Relay 4 already on"
+		else:
+			r = requests.post(url4, data={"value":"ON"}, headers=headers)
+			data = r.json()
+			speech = "Relay 4 Turned on"
+	elif a == 'relay4off':
+		if relay4_value == "OFF":
+			speech = "Relay 4 already off"
+		else:
+			r = requests.post(url4, data={"value":"OFF"}, headers=headers)
+			data = r.json()
+			speech = "Relay 4 Turned off"
+
+
 	elif a=='crypto':
 		b = req['intent']['params']['currency1']['resolved']
 		speech = "value of {0} is {1}".format(b, r_crypto[b]['last'])
