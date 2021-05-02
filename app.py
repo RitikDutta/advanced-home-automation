@@ -65,14 +65,14 @@ def webhook():
 		if relay1_value == "ON":
 			speech = "Relay 1 already on"
 		else:
-			r = requests.post(url1, data={"value":"ON"}, headers=headers)
+			r = requests.post(url1, data={"value":1}, headers=headers)
 			data = r.json()
 			speech = "Relay 1 Turned on"
 	elif a == 'relay1off':
 		if relay1_value == "OFF":
 			speech = "Relay 1 already off"
 		else:
-			r = requests.post(url1, data={"value":"OFF"}, headers=headers)
+			r = requests.post(url1, data={"value":0}, headers=headers)
 			data = r.json()
 			speech = "Relay 1 Turned off"
 	elif a == 'relay2on':
