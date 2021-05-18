@@ -127,7 +127,7 @@ def webhook():
 		speech = "value of {0} is {1}".format(b, r_crypto[b]['last'])
 
 	else:
-		speech = = "empty"
+		speech = "empty"
 
 	reply = {"candidates": [{"first_simple": {"variants": [{"speech": "Enter "}]}}]}
 	# print(b)
