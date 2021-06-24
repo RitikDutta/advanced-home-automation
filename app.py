@@ -30,9 +30,10 @@ def results():
     return {'fulfillmentText': 'This is a response from webhook.'}
 
 # create a route for webhook
-@app.route('/webhook', methods=['GET', 'POST'])
+@app.route('/webhook', methods=['GET', 'POST'], )
 def webhook():
 	# quotations = json.load(open("quotations.json",encoding="utf-8_sig"))
+
 	headers = {"X-AIO-Key": "aio_tZwT41kNnCUq2MfgUmQfrbgsz0TW"}
 	url1 = "https://io.adafruit.com/api/v2/nisam/feeds/relay1/data"
 	url2 = "https://io.adafruit.com/api/v2/nisam/feeds/relay2/data"
@@ -126,8 +127,6 @@ def webhook():
 		b = req['intent']['params']['currency1']['resolved']
 		speech = "value of {0} is {1}".format(b, r_crypto[b]['last'])
 
-	else:
-		speech = "empty"
 
 	reply = {"candidates": [{"first_simple": {"variants": [{"speech": "Enter "}]}}]}
 	# print(b)
